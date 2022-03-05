@@ -31,23 +31,25 @@ public class AVL
         node.height = 1 + Math.max(getHeight(node.left),getHeight(node.right));
 
         int balance = getHeight(node.left) - getHeight(node.right);
-        //System.out.println("Balance = " + balance);
+        // System.out.println("Balance = " + balance);
 
+        //RR case
         if(balance > 1 && newNode.val < node.left.val)
           return rightRotate(node);
 
-          if (balance < -1 && newNode.val > node.right.val)
-              return leftRotate(node);
+          //LL case
+        if (balance < -1 && newNode.val > node.right.val)
+          return leftRotate(node);
 
           // Left Right Case
-          if (balance > 1 && newNode.val > node.left.val)
+          if (balance > 1 && newNode.val > node.left.val)//<
           {
               node.left = leftRotate(node.left);
               return rightRotate(node);
           }
 
           // Right Left Case
-          if (balance < -1 && newNode.val < node.right.val)
+          if (balance < -1 && newNode.val < node.right.val)//>
           {
               node.right = rightRotate(node.right);
               return leftRotate(node);
